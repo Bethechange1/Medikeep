@@ -85,13 +85,29 @@ App = {
   handleAdopt: function(event) {
     var name = $('#a').val();
     var id = $('#b').val();
+
+    var b_day = $('#b_day').val();
+    var gender = $('#gender').val();
+    var ocu = $('#ocu').val();
+    var blood = $('#blood').val();
+    var mrg_status = $('#mrg_status').val();
     
     App.contracts.Adoption.deployed().then(function(instance) {
-      return instance.saveHashcode(App.account,name,id);
+      
+      i=instance;
+
+      return i.personal_details(App.account,b_day,gender,ocu,blood,mrg_staus);
     }).then(function(result) {
+      
+      return i.personal_details(App.account,b_day,gender,ocu,blood,mrg_staus);
+
       // Wait for votes to update
-      $("#content").hide();
-      $("#loader").show();
+      //$("#content").hide();
+      //$("#loader").show();
+    }).then(function(result1){
+
+      return i.contact_details(App.account,);
+
     }).catch(function(err) {
       console.error(err);
     });
