@@ -5,8 +5,8 @@ contract Adoption {
 
     struct Man {
 
-        string hashcode;
-        string id;
+       // string hashcode;
+        //string id;
         string f_name;
         string l_name;
         string email;
@@ -31,10 +31,21 @@ contract Adoption {
     address[] public ManAccts;
     //uint public count = 3;
 
+   // mapping (address => Man4) public Mans4;
+
     mapping (address => Man2) public Mans2;
 
     mapping (address => Man3) public Mans3;
 
+    function basic_details(address _address, string _f_name, string _l_name, string _email){
+      var man = Man[_address];
+
+      man.f_name = _f_name;
+      man.l_name = _l.name;
+      man.email = _email;
+
+      ManAccts.push(_address)-1;
+    }
     function personal_details(address _address, string _b_day, string _gender, string _occupation, string _blood_group, string _marital_status){
       var man =Mans2[_address];
 
@@ -44,7 +55,7 @@ contract Adoption {
       man.blood_group = _blood_group;
       man.marital_status = _marital_status;
 
-    ManAccts.push(_address)-1;
+      ManAccts.push(_address)-1;
     }
 
     function contact_details(address _address, string _home_address, string _current_address, string _country, string _state, string _city, string _phone_no){
@@ -56,11 +67,11 @@ contract Adoption {
       man.state = _state;
       man.city = _city;
       man.phone_no = _phone_no;
-      
+
       ManAccts.push(_address)-1;
 
     }
-    function saveHashcode(address _address, string _hashcode, string _id) public {
+   /* function saveHashcode(address _address, string _hashcode, string _id) public {
 
       var man = Mans[_address];
 
@@ -68,7 +79,7 @@ contract Adoption {
       man.id = _id;
       ManAccts.push(_address)-1;
 
-    }
+    }*/
 
 
     function getHashcode(address _address) view public returns (string) {

@@ -55,24 +55,6 @@ App = {
       }
     });
 
-    var candidatesResults = $("#candidatesResults");
-    candidatesResults.empty();
-   App.contracts.Adoption.deployed().then(function(instance){  
-    instance.Mans(App.account).then(function(candidate) {
-      var c =  candidate[0];
-      var b =  candidate[1];
-      // Render candidate Result
-      var candidateTemplate = "<tr><th>" + c + "</th><td>" + b + "</td><td>" + "sss" + "</td></tr>"
-      candidatesResults.append(candidateTemplate);
-
-      // Render candidate ballot option
-      //var candidateOption = "<option value='" + id + "' >" + name + "</ option>"
-      //candidatesSelect.append(candidateOption);
-    });
-   });
-    
-   
-
     $(document).on('click', '.btn-adopt', App.handleAdopt);
   },
 
@@ -91,6 +73,19 @@ App = {
     var ocu = $('#ocu').val();
     var blood = $('#blood').val();
     var mrg_status = $('#mrg_status').val();
+
+    var home_add = $('#home_add').val();
+    var current_add = $('#current_add').val();
+    var country = $('#country').val();
+    var state = $('#state').val();
+    var city = $('#city').val();
+    var phone_no = $('#phone_no').val();
+
+    var f_name = $('#f_name').val();
+    var l_name = $('#l_name').val();
+    var email = $('#email').val();
+
+
     
     App.contracts.Adoption.deployed().then(function(instance) {
       
@@ -106,14 +101,86 @@ App = {
       //$("#loader").show();
     }).then(function(result1){
 
-      return i.contact_details(App.account,);
+      return i.contact_details(App.account,home_add,current_add,country,state,city,phone_no);
+
+    }).then(function(result2){
+
+      return i.basic_details(App.account,f_name,l_name,email);
 
     }).catch(function(err) {
       console.error(err);
     });
 
     
+  },
+
+  show: function(event) {
+    
+    var candidatesResults = $("#candidatesResults");
+    candidatesResults.empty();
+    App.contracts.Adoption.deployed().then(function(instance){  
+      instance.Mans(App.account).then(function(candidate) {
+        //var c =  candidate[0];
+        //var b =  candidate[1];
+ 
+        var f_name = candidate[0];
+        var l_name = candidate[1];
+        var email = candidate[2];
+        // Render candidate Result
+        var candidateTemplate = "<tr><th>" + c + "</th><td>" + b + "</td><td>" + "sss" + "</td></tr>"
+        candidatesResults.append(candidateTemplate);
+
+      // Render candidate ballot option
+      //var candidateOption = "<option value='" + id + "' >" + name + "</ option>"
+      //candidatesSelect.append(candidateOption);
+    });
+   });
+
+   App.contracts.Adoption.deployed().then(function(instance){  
+    instance.Mans2(App.account).then(function(candidate) {
+      //var c =  candidate[0];
+      //var b =  candidate[1];
+
+      var b_day = candidate[0];
+      var gender = candidate[1];
+      var ocu = candidate[2];
+      var blood = candidate[3];
+      var mrg_status = candidate[4]; 
+      
+      // Render candidate Result
+      var candidateTemplate = "<tr><th>" + c + "</th><td>" + b + "</td><td>" + "sss" + "</td></tr>"
+      candidatesResults.append(candidateTemplate);
+
+    // Render candidate ballot option
+    //var candidateOption = "<option value='" + id + "' >" + name + "</ option>"
+    //candidatesSelect.append(candidateOption);
+  });
+ });
+
+ App.contracts.Adoption.deployed().then(function(instance){  
+  instance.Mans3(App.account).then(function(candidate) {
+    //var c =  candidate[0];
+    //var b =  candidate[1];
+
+    var state = candidate[0];
+    var city = candidate[1];
+    var country = candidate[2];
+    var home_add = candidate[3];
+    var current_add = candidate[4];
+    var phone_no = candidate[5]; 
+
+    // Render candidate Result
+    var candidateTemplate = "<tr><th>" + c + "</th><td>" + b + "</td><td>" + "sss" + "</td></tr>"
+    candidatesResults.append(candidateTemplate);
+
+  // Render candidate ballot option
+  //var candidateOption = "<option value='" + id + "' >" + name + "</ option>"
+  //candidatesSelect.append(candidateOption);
+});
+});
+
   }
+  
 
 };
 
