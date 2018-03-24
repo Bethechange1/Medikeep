@@ -93,16 +93,13 @@
     }
     else {
       //document.write("<a href='kregister.html'><button>View Details</button></a>");
-      window.open("kregister.html","_self");
+      window.open("kmenu.html","_self");
     }
 
   },
-  // // kpatfunc: function(event){
-  //   window.location.href= './src/kpat.html';
-//},
   handleAdopt: function(event) {
-    var name = $('#a').val();
-    var id = $('#b').val();
+    //var name = $('#a').val();
+    //var id = $('#b').val();
 
     var b_day = $('#b_day').val();
     var gender = $('#gender').val();
@@ -127,14 +124,7 @@
 
       i=instance;
 
-      return i.personal_details(App.account,b_day,gender,ocu,blood,mrg_staus);
-    }).then(function(result) {
-
-      return i.personal_details(App.account,b_day,gender,ocu,blood,mrg_staus);
-
-      // Wait for votes to update
-      //$("#content").hide();
-      //$("#loader").show();
+      return i.personal_details(App.account,b_day,gender,ocu,blood,mrg_status);
     }).then(function(result1){
 
       return i.contact_details(App.account,home_add,current_add,country,state,city,phone_no);
@@ -142,6 +132,11 @@
     }).then(function(result2){
 
       return i.basic_details(App.account,f_name,l_name,email);
+
+    }).then(function(result3){
+
+      window.open("kdbase.html","_self");
+      //App.show();
 
     }).catch(function(err) {
       console.error(err);
@@ -152,70 +147,63 @@
 
   show: function(event) {
 
-    var candidatesResults = $("#candidatesResults");
-    candidatesResults.empty();
-    App.contracts.Adoption.deployed().then(function(instance){
-      instance.Mans(App.account).then(function(candidate) {
-        //var c =  candidate[0];
-        //var b =  candidate[1];
+      App.contracts.Adoption.deployed().then(function(instance)
+      {
+        instance.Mans(App.account).then(function(candidate)
+        {
+        
+          var f_name = candidate[0];
+          var l_name = candidate[1];
+          var email = candidate[2];
 
-        var f_name = candidate[0];
-        var l_name = candidate[1];
-        var email = candidate[2];
-        // Render candidate Result
-        var candidateTemplate = "<tr><th>" + c + "</th><td>" + b + "</td><td>" + "sss" + "</td></tr>"
-        candidatesResults.append(candidateTemplate);
+          // Render candidate Result
+          $("#fname").html("First Name: " + f_name);
+          $("#lname").html("Last Name: " + l_name);
+          $("#mail").html("Email ID: " + email);
+        });
+      });
 
-      // Render candidate ballot option
-      //var candidateOption = "<option value='" + id + "' >" + name + "</ option>"
-      //candidatesSelect.append(candidateOption);
+      App.contracts.Adoption.deployed().then(function(instance)
+      {
+        instance.Mans2(App.account).then(function(candidate)
+        {
+      
+
+          var b_day = candidate[0];
+          var gender = candidate[1];
+          var ocu = candidate[2];
+          var blood = candidate[3];
+          var mrg_status = candidate[4];
+
+          $("#bday").html("Birthday: " + b_day);
+          $("#gnder").html("Gender: " + gender);
+          $("#occup").html("Occupation: " + ocu);
+          $("#bldgrp").html("Blood Group: " + blood);
+          $("#mrgst").html("Marital Status: " + mrg_status);
+      });
     });
-   });
 
-   App.contracts.Adoption.deployed().then(function(instance){
-    instance.Mans2(App.account).then(function(candidate) {
-      //var c =  candidate[0];
-      //var b =  candidate[1];
+      App.contracts.Adoption.deployed().then(function(instance)
+      {
+        instance.Mans3(App.account).then(function(candidate) {
+    
+        var state = candidate[0];
+        var city = candidate[1];
+        var country = candidate[2];
+        var home_add = candidate[3];
+        var current_add = candidate[4];
+        var phone_no = candidate[5];
 
-      var b_day = candidate[0];
-      var gender = candidate[1];
-      var ocu = candidate[2];
-      var blood = candidate[3];
-      var mrg_status = candidate[4];
+        $("#haddr").html("Home Address: " + home_add);
+        $("#caddr").html("Current Address: " + current_add);
+        $("#cty").html("City: " + city);
+        $("#sta").html("State: " + state);
+        $("#cnry").html("Country: " + country);
+        $("#phn").html("Phone No.: " + phone_no);
+      });
+      });
 
-      // Render candidate Result
-      var candidateTemplate = "<tr><th>" + c + "</th><td>" + b + "</td><td>" + "sss" + "</td></tr>"
-      candidatesResults.append(candidateTemplate);
-
-    // Render candidate ballot option
-    //var candidateOption = "<option value='" + id + "' >" + name + "</ option>"
-    //candidatesSelect.append(candidateOption);
-  });
- });
-
- App.contracts.Adoption.deployed().then(function(instance){
-  instance.Mans3(App.account).then(function(candidate) {
-    //var c =  candidate[0];
-    //var b =  candidate[1];
-
-    var state = candidate[0];
-    var city = candidate[1];
-    var country = candidate[2];
-    var home_add = candidate[3];
-    var current_add = candidate[4];
-    var phone_no = candidate[5];
-
-    // Render candidate Result
-    var candidateTemplate = "<tr><th>" + c + "</th><td>" + b + "</td><td>" + "sss" + "</td></tr>"
-    candidatesResults.append(candidateTemplate);
-
-  // Render candidate ballot option
-  //var candidateOption = "<option value='" + id + "' >" + name + "</ option>"
-  //candidatesSelect.append(candidateOption);
-});
-});
-
-  }
+}
 
 
 };

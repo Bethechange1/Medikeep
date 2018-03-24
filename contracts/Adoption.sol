@@ -19,7 +19,7 @@ contract Adoption {
         string blood_group;
         string marital_status;
     }
-    
+
     struct Man3 {
         string state;
         string city;
@@ -31,9 +31,6 @@ contract Adoption {
 
     mapping (address => Man) public Mans;
     address[] public ManAccts;
-    //uint public count = 3;
-
-   // mapping (address => Man4) public Mans4;
 
     mapping (address => Man2) public Mans2;
 
@@ -85,6 +82,6 @@ contract Adoption {
     }*/
 
 
-    
+
 
 }
