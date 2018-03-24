@@ -1,0 +1,111 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<title>Pete's Pet Shop</title>
+	
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+	
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	  </head>
+<body>
+<h1 align="center">Register Now</h1>
+<form name="f1" method="post" action="pdetails.html">
+
+
+
+<fieldset><legend>LOGIN</legend>
+
+Enter Username<br>
+<input type="text" name="uname"><br><br>
+
+Create a password<br>
+<input type="password"name="pass"><br><br>
+
+Name<br>
+<input type="text" name="fname" placeholder="First Name">
+<input type="text" name="lname" placeholder="Last Name"> <br><br>
+
+Age <br>
+<input type="number" name="tag"><br><br>
+
+GENDER : <input type="radio" id="male" name="gen" value="MALE"> MALE
+<input type="radio" id="female" name="gen" value="FEMALE"> FEMALE
+<br><br>
+
+Contact No.<br>
+
+<input type="number" name="cno"/><br><br>
+
+<input type="checkbox" name="c1"/> I accept all the Terms and Conditions.
+<br><br>
+
+<input type="submit" name="sub" value="REGISTER" onclick="return checkvalid()"/>
+<input type="reset" name="res" value="CANCEL"/>
+
+</form>
+<script>
+
+function checkvalid()
+{
+var un=f1.uname.value;
+var pass=f1.pass.value;
+var fname = f1.fname.value;
+var lname=f1.lname.value;
+var age =f1.tag.value;
+var contact =f1.cno.value;
+
+
+if (un != '' && pass != '' && fname!='' && lname!='' && age!='' && contact != '')
+{	if (document.getElementById("male").checked || document.getElementById("female").checked)
+	{	if (contact.length == 10)
+		{	//alert("All type of validation has done on OnSubmit event.");
+			//return true;
+			if(f1.c1.checked)
+			{
+				// window.location.href='1.html';
+				return true;
+			}
+			else
+			{
+				alert("Please agree Terms & Conditions!");
+				return false;
+			}
+		}
+		else
+		{	alert("The Contact No. must be at least 10 digit long!");
+			return false;
+		}
+	}
+	else
+	{	alert("You must select gender.....!");
+		return false;
+	}
+}
+else {
+alert("All fields are required.....!");
+return false;
+}
+
+}
+
+
+</script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/web3.min.js"></script>
+<script src="js/truffle-contract.js"></script>
+<script src="js/app.js"></script>
+</body>
+
+</html>

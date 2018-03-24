@@ -1,9 +1,9 @@
-App = {
+ App = {
   web3Provider: null,
   contracts: {},
 
   init: function() {
-    
+
     return App.initWeb3();
   },
 
@@ -51,10 +51,18 @@ App = {
     web3.eth.getCoinbase(function(err, account) {
       if (err === null) {
         App.account = account;
-        $("#accountAddress").html("Your Account: " + account);
+      //  $("#accountAddress").html("Your Account: " + account);
       }
     });
+    /*if(App.account===null)
+    {
+      $("#abc").html("Login to your Ethereum account");
+    }
+    else {
+      document.write("<a href='pdetails.html'><button>View Details</button></a>")
+    }*/
 
+//    $("#p_button").on('click',)
     $(document).on('click', '.btn-adopt', App.handleAdopt);
   },
 
@@ -64,6 +72,34 @@ App = {
      */
   },
 
+  vala: function(event) {
+
+    if(App.account===null)
+    {
+      $("#q").html("Login to your Ethereum account");
+    }
+    else {
+      //document.write("<a href='pdetails.html'><button>View Details</button></a>");
+      //window.open("https://www.youtube.com/watch?v=G83c-ZqZ7pk");
+      window.open("pdetails.html","_self");
+    }
+
+  },
+  vala1: function(event) {
+
+    if(App.account===null)
+    {
+      $("#q").html("Login to your Ethereum account");
+    }
+    else {
+      //document.write("<a href='kregister.html'><button>View Details</button></a>");
+      window.open("kregister.html","_self");
+    }
+
+  },
+  // // kpatfunc: function(event){
+  //   window.location.href= './src/kpat.html';
+//},
   handleAdopt: function(event) {
     var name = $('#a').val();
     var id = $('#b').val();
@@ -86,14 +122,14 @@ App = {
     var email = $('#email').val();
 
 
-    
+
     App.contracts.Adoption.deployed().then(function(instance) {
-      
+
       i=instance;
 
       return i.personal_details(App.account,b_day,gender,ocu,blood,mrg_staus);
     }).then(function(result) {
-      
+
       return i.personal_details(App.account,b_day,gender,ocu,blood,mrg_staus);
 
       // Wait for votes to update
@@ -111,18 +147,18 @@ App = {
       console.error(err);
     });
 
-    
+
   },
 
   show: function(event) {
-    
+
     var candidatesResults = $("#candidatesResults");
     candidatesResults.empty();
-    App.contracts.Adoption.deployed().then(function(instance){  
+    App.contracts.Adoption.deployed().then(function(instance){
       instance.Mans(App.account).then(function(candidate) {
         //var c =  candidate[0];
         //var b =  candidate[1];
- 
+
         var f_name = candidate[0];
         var l_name = candidate[1];
         var email = candidate[2];
@@ -136,7 +172,7 @@ App = {
     });
    });
 
-   App.contracts.Adoption.deployed().then(function(instance){  
+   App.contracts.Adoption.deployed().then(function(instance){
     instance.Mans2(App.account).then(function(candidate) {
       //var c =  candidate[0];
       //var b =  candidate[1];
@@ -145,8 +181,8 @@ App = {
       var gender = candidate[1];
       var ocu = candidate[2];
       var blood = candidate[3];
-      var mrg_status = candidate[4]; 
-      
+      var mrg_status = candidate[4];
+
       // Render candidate Result
       var candidateTemplate = "<tr><th>" + c + "</th><td>" + b + "</td><td>" + "sss" + "</td></tr>"
       candidatesResults.append(candidateTemplate);
@@ -157,7 +193,7 @@ App = {
   });
  });
 
- App.contracts.Adoption.deployed().then(function(instance){  
+ App.contracts.Adoption.deployed().then(function(instance){
   instance.Mans3(App.account).then(function(candidate) {
     //var c =  candidate[0];
     //var b =  candidate[1];
@@ -167,7 +203,7 @@ App = {
     var country = candidate[2];
     var home_add = candidate[3];
     var current_add = candidate[4];
-    var phone_no = candidate[5]; 
+    var phone_no = candidate[5];
 
     // Render candidate Result
     var candidateTemplate = "<tr><th>" + c + "</th><td>" + b + "</td><td>" + "sss" + "</td></tr>"
@@ -180,7 +216,7 @@ App = {
 });
 
   }
-  
+
 
 };
 
