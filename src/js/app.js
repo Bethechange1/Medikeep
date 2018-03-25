@@ -97,6 +97,27 @@
     }
 
   },
+  vala2:function(event){
+
+    App.contracts.Adoption.deployed().then(function(instance) {
+
+      i=instance;
+      return i.voters(App.account);
+
+    }).then(function(haas){
+      if(haas)
+      {
+
+          $("#q").html("You are already Registered");
+
+      }else {
+
+        window.open("kmenu.html","_self");
+
+      }
+    });
+
+  },
   handleAdopt: function(event) {
     //var name = $('#a').val();
     //var id = $('#b').val();
@@ -294,24 +315,24 @@ show1: function(event) {
   });
   });
 
-  App.contracts.Adoption.deployed().then(function(instance)
-  {
-    instance.Mans4(na).then(function(candidate) {
+  // App.contracts.Adoption.deployed().then(function(instance)
+  // {
+  //   instance.Mans4(na).then(function(candidate) {
 
-    var state = candidate[0];
-    var curDate = new Date();
-    var dd = curDate.getDate();
-    var mm = curDate.getMonth();
-    var yyyy = curDate.getFullYear();
-    var curHour = curDate.getHours();
-    var curMin = curDate.getMinutes();
+  //   var state = candidate[0];
+  //   var curDate = new Date();
+  //   var dd = curDate.getDate();
+  //   var mm = curDate.getMonth();
+  //   var yyyy = curDate.getFullYear();
+  //   var curHour = curDate.getHours();
+  //   var curMin = curDate.getMinutes();
 
-    var newPost = document.createElement('p');
-		newPost.innerHTML = ("Date: " + dd + "/" + (mm+1) + "/" + yyyy + "\t\t\t\t\t\t\t" + "Time: " + curHour + ":" + curMin + "<br>" + state);
-    t.insertBefore(newPost, t.firstChild);
+  //   var newPost = document.createElement('p');
+	// 	newPost.innerHTML = ("Date: " + dd + "/" + (mm+1) + "/" + yyyy + "\t\t\t\t\t\t\t" + "Time: " + curHour + ":" + curMin + "<br>" + state);
+  //   t.insertBefore(newPost, t.firstChild);
     
-  });
-  });
+  // });
+  // });
 
 }
 
