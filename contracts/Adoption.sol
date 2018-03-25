@@ -29,12 +29,27 @@ contract Adoption {
         string phone_no;
     }
 
+    struct Man4 {
+        string s;
+    }
+
     mapping (address => Man) public Mans;
     address[] public ManAccts;
 
     mapping (address => Man2) public Mans2;
 
     mapping (address => Man3) public Mans3;
+
+    mapping (address => Man4) public Mans4;
+
+    function symtoms(address _address, string _s) {
+
+      var man = Mans4[_address];
+
+      
+      
+      ManAccts.push(_address)-1;
+    }
 
     function basic_details(address _address, string _f_name, string _l_name, string _email) public {
       var man = Mans[_address];

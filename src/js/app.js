@@ -135,14 +135,43 @@
 
     }).then(function(result3){
 
-      window.open("kdbase.html","_self");
-      //App.show();
+      window.open("kdbase1.html","_self");
+      
 
     }).catch(function(err) {
       console.error(err);
     });
 
 
+  },
+  add: function(event) {
+
+    var curDate = new Date();
+    var dd = curDate.getDate();
+    var mm = curDate.getMonth();
+    var yyyy = curDate.getFullYear();
+    var curHour = curDate.getHours();
+    var curMin = curDate.getMinutes();
+    var addd = $("#text").val();
+
+    App.contracts.Adoption.deployed().then(function(instance) {
+
+      i=instance;
+
+      return i.symtoms(App.account,addd);
+    }).then(function(result) {
+     
+    });
+    
+    //   var newPost = document.createElement('p');
+		// newPost.innerHTML = ("Date: " + dd + "/" + (mm+1) + "/" + yyyy + "\t\t\t\t\t\t\t" + "Time: " + curHour + ":" + curMin + "<br>" + addd);
+    // t.insertBefore(newPost, t.firstChild);
+    
+  
+    //$("#date").html( "Date: " + dd + "/" + (mm+1) + "/" + yyyy + "\t\t\t\t\t\t\t\t\t\t\t\t" + "Time: " + curHour + ":" + curMin);
+    //$("#t").html("" + addd);
+    //document.write(curHour + ":" + curMin);
+    
   },
 
   show: function(event) {
@@ -202,6 +231,87 @@
         $("#phn").html("Phone No.: " + phone_no);
       });
       });
+
+},
+
+show1: function(event) {
+
+  var na = $('#na').val();
+
+  App.contracts.Adoption.deployed().then(function(instance)
+  {
+    instance.Mans(na).then(function(candidate)
+    {
+    
+      var f_name = candidate[0];
+      var l_name = candidate[1];
+      var email = candidate[2];
+
+      // Render candidate Result
+      $("#fname").html("First Name: " + f_name);
+      $("#lname").html("Last Name: " + l_name);
+      $("#mail").html("Email ID: " + email);
+    });
+  });
+
+  App.contracts.Adoption.deployed().then(function(instance)
+  {
+    instance.Mans2(na).then(function(candidate)
+    {
+  
+
+      var b_day = candidate[0];
+      var gender = candidate[1];
+      var ocu = candidate[2];
+      var blood = candidate[3];
+      var mrg_status = candidate[4];
+
+      $("#bday").html("Birthday: " + b_day);
+      $("#gnder").html("Gender: " + gender);
+      $("#occup").html("Occupation: " + ocu);
+      $("#bldgrp").html("Blood Group: " + blood);
+      $("#mrgst").html("Marital Status: " + mrg_status);
+  });
+});
+
+  App.contracts.Adoption.deployed().then(function(instance)
+  {
+    instance.Mans3(na).then(function(candidate) {
+
+    var state = candidate[0];
+    var city = candidate[1];
+    var country = candidate[2];
+    var home_add = candidate[3];
+    var current_add = candidate[4];
+    var phone_no = candidate[5];
+
+    $("#haddr").html("Home Address: " + home_add);
+    $("#caddr").html("Current Address: " + current_add);
+    $("#cty").html("City: " + city);
+    $("#sta").html("State: " + state);
+    $("#cnry").html("Country: " + country);
+    $("#phn").html("Phone No.: " + phone_no);
+  });
+  });
+
+  App.contracts.Adoption.deployed().then(function(instance)
+  {
+    instance.Mans4(na).then(function(candidate) {
+
+    var state = candidate[0];
+    var curDate = new Date();
+    var dd = curDate.getDate();
+    var mm = curDate.getMonth();
+    var yyyy = curDate.getFullYear();
+    var curHour = curDate.getHours();
+    var curMin = curDate.getMinutes();
+
+    var newPost = document.createElement('p');
+		newPost.innerHTML = ("Date: " + dd + "/" + (mm+1) + "/" + yyyy + "\t\t\t\t\t\t\t" + "Time: " + curHour + ":" + curMin + "<br>" + state);
+    t.insertBefore(newPost, t.firstChild);
+    
+  });
+  });
 
 }
 
