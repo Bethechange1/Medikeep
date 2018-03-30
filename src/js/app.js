@@ -174,14 +174,20 @@
     var curHour = curDate.getHours();
     var curMin = curDate.getMinutes();
     var addd = $("#text").val();
+    var na = $('#na').val();
 
     App.contracts.Adoption.deployed().then(function(instance) {
 
       i=instance;
 
-      return i.symtoms(App.account,addd);
+      return i.getstring(na);
     }).then(function(result) {
-     
+      
+      result = result + addd +"<br>" +"";
+
+      $("#ans").html("kk"+ result);
+      return i.symtoms(na,result);
+      
     });
     
     //   var newPost = document.createElement('p');
@@ -315,24 +321,24 @@ show1: function(event) {
   });
   });
 
-  // App.contracts.Adoption.deployed().then(function(instance)
-  // {
-  //   instance.Mans4(na).then(function(candidate) {
+  App.contracts.Adoption.deployed().then(function(instance)
+  {
+    instance.Mans4(na).then(function(candidate) {
 
-  //   var state = candidate[0];
-  //   var curDate = new Date();
-  //   var dd = curDate.getDate();
-  //   var mm = curDate.getMonth();
-  //   var yyyy = curDate.getFullYear();
-  //   var curHour = curDate.getHours();
-  //   var curMin = curDate.getMinutes();
+    var state1 = candidate;
+    var curDate = new Date();
+    var dd = curDate.getDate();
+    var mm = curDate.getMonth();
+    var yyyy = curDate.getFullYear();
+    var curHour = curDate.getHours();
+    var curMin = curDate.getMinutes();
 
-  //   var newPost = document.createElement('p');
-	// 	newPost.innerHTML = ("Date: " + dd + "/" + (mm+1) + "/" + yyyy + "\t\t\t\t\t\t\t" + "Time: " + curHour + ":" + curMin + "<br>" + state);
-  //   t.insertBefore(newPost, t.firstChild);
+    var newPost = document.createElement('p');
+		newPost.innerHTML = ("Date: " + dd + "/" + (mm+1) + "/" + yyyy + "\t\t\t\t\t\t\t" + "Time: " + curHour + ":" + curMin + "<br>" + state1);
+    t.insertBefore(newPost, t.firstChild);
     
-  // });
-  // });
+  });
+  });
 
 }
 

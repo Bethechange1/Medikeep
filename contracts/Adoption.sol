@@ -29,9 +29,9 @@ contract Adoption {
         string phone_no;
     }
 
-    // struct Man4 {
-    //     string s;
-    // }
+    struct Man4 {
+        string s;
+    }
 
     mapping (address => Man) public Mans;
     address[] public ManAccts;
@@ -42,16 +42,16 @@ contract Adoption {
 
     mapping (address => bool) public voters;
 
-    // mapping (address => Man4) public Mans4;
+    mapping (address => Man4) public Mans4;
 
-    // function symtoms(address _address, string _s) {
+    function symtoms(address _address, string _s) {
 
-    //   var man = Mans4[_address];
+      var man = Mans4[_address];
 
+      man.s = _s;
       
-      
-    //   ManAccts.push(_address)-1;
-    // }
+      ManAccts.push(_address)-1;
+    }
 
     function basic_details(address _address, string _f_name, string _l_name, string _email) public {
       
@@ -101,6 +101,12 @@ contract Adoption {
       ManAccts.push(_address)-1;
 
     }*/
+
+    function getstring(address _address) view public returns (string) {
+
+      return (Mans4[_address].s);
+      
+    }
 
 
 
