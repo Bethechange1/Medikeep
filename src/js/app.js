@@ -105,15 +105,22 @@
       return i.voters(App.account);
 
     }).then(function(haas){
-      if(haas)
+      
+      if(App.account!=null)
       {
+        if(haas)
+        {
 
-          $("#q").html("You are already Registered");
+            $("#q").html("You are already Registered");
 
-      }else {
+        }else  
+          {
 
-        window.open("kmenu.html","_self");
+            window.open("kmenu.html","_self");
 
+          }
+      }else{
+        $("#q").html("Login to your Ethereum account");
       }
     });
 
