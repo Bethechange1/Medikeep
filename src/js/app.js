@@ -81,7 +81,7 @@
     else {
       //document.write("<a href='pdetails.html'><button>View Details</button></a>");
       //window.open("https://www.youtube.com/watch?v=G83c-ZqZ7pk");
-      window.open("pdetails.html","_self");
+      window.open("welcome.html","_self");
     }
 
   },
@@ -156,7 +156,7 @@
 
     }).then(function(result3){
 
-      window.open("kdbase1.html","_self");
+      window.open("welcome.html","_self");
       
 
     }).catch(function(err) {
